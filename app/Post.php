@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $casts = [
-        'comments' => 'array'
-    ];
-
+    public function comments(){
+        return $this->hasMany('\App\Comment');
+    }
+    protected $attributes = array(
+        'likes' => 0,
+      );
+      
     protected $fillable = [
         'title',
-        'content'
+        'content',
     ];
-};
+    
+
+    };

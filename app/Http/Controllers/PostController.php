@@ -8,36 +8,26 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function all(){
-        $tasks = Post::all();
+        $tasks = Post::with('comments')->get();
         return response()->json($tasks);
     }
+
     public function store(Request $request){
         $request->validate([
             'title'=>'required',
             'content'=>'required'
         ]);
-
         $post = Post::create($request->all());
-        $tasks = Post::all();
-        return response()->json($tasks);
+        return response()->json($post);
     }
-    public function comment(Request $request, Post $post){
-        $request->validate([
-            'comment'=>'required'
-        ]);
-        $post->comments->append($request->comment);
-        $tasks = Post::all();
-        return response()->json($tasks);
-    }
-    public function like(Request $request, Post $post){
+
+    public function like(Post $post, Request $request){
         $request->validate([
             'type'=>'required'
         ]);
         if ($request->type=='+'){
-            $post->likes++;
+            $post->increment('likes');
         }
-        else $post->likes--;
-        $tasks = Post::all();
-        return response()->json($tasks);
+        else $post->decrement('likes');
     }
 }

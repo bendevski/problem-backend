@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->integer('likes');
-            $table->json('comments');
             $table->timestamps();
         });
     }

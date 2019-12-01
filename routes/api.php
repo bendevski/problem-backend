@@ -15,5 +15,5 @@ use Illuminate\Http\Request;
 
 Route::get('/posts', 'PostController@all')->name('posts.all');
 Route::post('/posts', 'PostController@store')->name('posts.new');
-Route::post('/posts/{post}/comment','PostController@comment')->name('posts.comment');
-Route::post('/posts/{post}/like', 'PostController@like')->name('posts.like');
+Route::put('/posts/like/{post}', 'PostController@like')->name('posts.like');
+Route::post('/comment','CommentController@store')->name('comments.new');
