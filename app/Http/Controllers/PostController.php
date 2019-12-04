@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
-use \Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -18,10 +17,7 @@ class PostController extends Controller
             'title'=>'required',
             'content'=>'required'
         ]);
-        //this is a bit lazy of me
-        $req = $request;
-        $req->time=Carbon::now()->timestamp;
-        $post = Post::create($req->all());
+        $post = Post::create($request->all());
         return response()->json($post);
     }
 
