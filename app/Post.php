@@ -10,7 +10,7 @@ class Post extends Model
         return $this->hasMany('\App\Comment');
     }
     protected $attributes = array(
-        'likes' => 0,
+        'likes' => 0 
       );
       
     protected $fillable = [
