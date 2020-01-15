@@ -29,5 +29,6 @@ class PostController extends Controller
             $post->increment('likes');
         }
         else $post->decrement('likes');
+        $post->save();
     }
 }
